@@ -15,7 +15,7 @@ const Read = () => {
     }
     axios.get('https://localhost:4000/api/movies')//added desired json file to read
       .then((response) => {
-        console.log(responce.data);
+        console.log(response.data);
         setMovies(response.data.movies);//sets movie data
       })
       .catch((error) => {

@@ -23,6 +23,23 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//Database Server Connection String
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://admin:admin@cluster0.n2bkl.mongodb.net/MyMovieDB');
+
+//What data to be stored
+const movieSchema = new mongoose.Schema({
+    title: String,
+    year: String,
+    poster: String
+});
+
+//Object to represent Database
+//Generate model based schema
+const movieModel = new mongoose.model('myMovies', movieSchema);
+ 
+const Movie = mongoose.model('Movie', movieSchema);
+
 app.get('/api/movies', (req, res) => {
     const movies = [
         {
