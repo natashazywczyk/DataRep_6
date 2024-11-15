@@ -37,8 +37,6 @@ const movieSchema = new mongoose.Schema({
 //Object to represent Database
 //Generate model based schema
 const movieModel = new mongoose.model('myMovies', movieSchema);
- 
-const Movie = mongoose.model('Movie', movieSchema);
 
 app.get('/api/movies', (req, res) => {
     const movies = [
@@ -66,12 +64,7 @@ app.get('/api/movies', (req, res) => {
     ];
     res.status(201).json({ movies });
 });
-
-app.post('/api/movies', (req, res) =>
-{
-    console.log("Movie: " + req.body);
-    res.send("Movies Received");
-})
+ 
 
 app.post('/api/movies', async (req, res)=>{
 
