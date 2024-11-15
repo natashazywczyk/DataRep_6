@@ -67,10 +67,14 @@ app.get('/api/movies', (req, res) => {
     res.status(201).json({ movies });
 });
 
-app.post('/api/movies', (req, res) =>
-{
-    console.log("Movie: " + req.body);
-    res.send("Movies Received");
+app.post('/api/movies', async (req, res)=>{
+
+    const { title, year, poster } = req.body;
+   
+    const newMovie = new movieModel({ title, year, poster });
+    await newMovie.save();
+   
+    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 
 app.listen(port, () => {
