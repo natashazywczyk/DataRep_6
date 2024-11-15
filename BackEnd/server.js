@@ -40,7 +40,7 @@ const movieModel = new mongoose.model('myMovies', movieSchema);
 
 app.get('/api/movies', (req, res) => {
     const movies = [
-        {
+        /*{
             "Title": "Avengers: Infinity War (server)",
             "Year": "2018",
             "imdbID": "tt4154756",
@@ -60,12 +60,12 @@ app.get('/api/movies', (req, res) => {
             "imdbID": "tt0816711",
             "Type": "movie",
             "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-        }
+        }*/
     ];
     res.status(201).json({ movies });
 });
  
-
+//Push movie data to database
 app.post('/api/movies', async (req, res)=>{
 
     const { title, year, poster } = req.body;
@@ -75,6 +75,13 @@ app.post('/api/movies', async (req, res)=>{
    
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
+
+//Find all document in database
+app.get('/api/movies', async (req, res) => {
+    const movies = await movieModel.find({});
+
+    res.status(200).json({movies})
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
