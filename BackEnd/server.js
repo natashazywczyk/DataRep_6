@@ -64,7 +64,6 @@ app.get('/api/movies/:id', async(req, res) =>
     res.json(movie);
 })
 
-
 //Find movie from id and update it, creating a new, updated movie is displayed
 app.put('/api/movies/:id', async (req, res) => {
     let movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, {new:true})
@@ -73,6 +72,7 @@ app.put('/api/movies/:id', async (req, res) => {
     res.send(movie);
 })
 
+//Only run on specified port when running
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
