@@ -5,14 +5,17 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+//Import functions and hooks
 export default function Edit(props) {
   let { id } = useParams();
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [poster, setPoster] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //Allows navigation to other roots
 
+//Do when movie id changes
 useEffect(() => {
+    //GETS movie from id given
     axios.get('http://localhost:4000/api/movies/' + id)
         .then((response) => {
             setTitle(response.data.title);
@@ -27,9 +30,13 @@ useEffect(() => {
 const handleSubmit = (event) => {
     event.preventDefault();
     const newMovie = { id, title, year, poster };
+    
+    //Sets changes to movie using PUT request
     axios.put('http://localhost:4000/api/movies/' + id, newMovie)
         .then((res) => {
             console.log(res.data);
+
+            //Go to read after editing movie
             navigate('/read');
         });
 }

@@ -58,10 +58,19 @@ app.post('/api/movies', async (req, res)=>{
 })
 
 //Search for a particular movie ID
-app.get('/api/movie/:id', async(req, res) =>
+app.get('/api/movies/:id', async(req, res) =>
 {
     const movie = await movieModel.findById(req.params.id);
     res.json(movie);
+})
+
+
+//Find movie from id and update it, creating a new, updated movie is displayed
+app.put('/api/movies/:id', async (req, res) => {
+    let movie = await movieModel.findByIdAndUpdate(req.params.id, req.body, {new:true})
+
+    //Send edited movie
+    res.send(movie);
 })
 
 app.listen(port, () => {
