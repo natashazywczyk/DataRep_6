@@ -28,7 +28,6 @@ const MovieItem = (props)=> {
   return (
     <div>
       <Card>
-        <Card.Header>{props.myMovie.title}</Card.Header>
         <Card.Body>
           <blockquote className="blockquote mb-0">
             <img src={props.myMovie.poster} alt={props.myMovie.title} />
