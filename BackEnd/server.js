@@ -72,6 +72,14 @@ app.put('/api/movies/:id', async (req, res) => {
     res.send(movie);
 })
 
+//Handles the movie deletion, server side
+app.delete('/api/movies/:id', async (req, res) =>
+{
+    console.log('Deleting movie, ID: ', req.params.id);
+    const movie = await movieModel.findByIdAndDelete(req.params.id); //wait until the id of movie is ofund
+    res.status(200).send({ message: "Movie successfully deleted", movie});
+});
+
 //Only run on specified port when running
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
