@@ -7,22 +7,45 @@ const Read = () => {
 
   const [movies, setMovies] = useState([]);
 
+  const reloadData = () => 
+  {
+    axios.get('http://localhost:4000/api/movies')
+    .then((response) => {
+      console.log(response.data);
+    setMovies(response.data.movies);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   useEffect(() => {
-    for(let i = 0; i < 100000; i++)
-    {
+      reloadData();
+    },[]);
+  //   axios.get('http://localhost:4000/api/movies')//added desired json file to read
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setMovies(response.data.movies);//sets movie data
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);//error catch
+  //     });
+  // }, []);
 
-    }
-    axios.get('http://localhost:4000/api/movies')//added desired json file to read
-      .then((response) => {
-        console.log(response.data);
-        setMovies(response.data.movies);//sets movie data
-      })
-      .catch((error) => {
-        console.log(error);//error catch
-      });
-  }, []);
+    //Adds h3 size text
+    return(
+        <div>
+            <h3>Hello from the Read component</h3>
+
+            <Movies myMovies={movies} ReloadData = {reloadData} />
+        </div>
+    );
+  }
 
 
+  export default Read;
+
+  
 
 
     //Read in a list of movies in json data and place in an array
@@ -49,27 +72,3 @@ const Read = () => {
               "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
             }     
     ];*/
-
-    //Adds h3 size text
-    return(
-        <div>
-            <h3>Hello from the Read component</h3>
-
-            <Movies myMovies={movies} />
-            
-            {/*Embed Movies
-            Pass in data from movie list*
-            <Card style={{ width: '25rem' }}>
-                <Card.Body>
-                    <Card.Title>Movie List</Card.Title>
-                    <Card.Text>
-                        <Movies myMovies={movieList}/>
-                    </Card.Text>
-                </Card.Body>
-            </Card>*/}
-        </div>
-    );
-  }
-
-
-  export default Read;
