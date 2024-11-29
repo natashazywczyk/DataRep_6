@@ -7,7 +7,7 @@ function Movies(props) {
                 <MovieItem
                     myMovie={movie}
                     key={movie._id}
-                    Reload={props.ReloadData} 
+                    Reload={props.ReloadData} //handles reload function
                 />
             ))}
         </>

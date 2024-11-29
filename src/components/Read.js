@@ -7,41 +7,33 @@ const Read = () => {
 
   const [movies, setMovies] = useState([]);
 
+  //Reload function that allows page to instantly refresh when movie deleted
   const reloadData = () => 
   {
-    axios.get('http://localhost:4000/api/movies')
+    axios.get('http://localhost:4000/api/movies') //get api server
     .then((response) => {
       console.log(response.data);
-    setMovies(response.data.movies);
+      setMovies(response.data.movies); //display movie items
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error); //handle error displaying movies
     })
   }
 
+  //Reload when used
   useEffect(() => {
       reloadData();
     },[]);
-  //   axios.get('http://localhost:4000/api/movies')//added desired json file to read
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setMovies(response.data.movies);//sets movie data
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);//error catch
-  //     });
-  // }, []);
 
     //Adds h3 size text
     return(
         <div>
             <h3>Hello from the Read component</h3>
 
-            <Movies myMovies={movies} ReloadData = {reloadData} />
+            <Movies myMovies={movies} ReloadData = {reloadData} /> {/*reload page when item deleted */}
         </div>
     );
   }
-
 
   export default Read;
 
