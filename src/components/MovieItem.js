@@ -9,12 +9,15 @@ const MovieItem = (props)=> {
   useEffect(() => {
     console.log("Movie Item:", props.mymovie);
   }, [props.mymovie]); // Only run this effect when the mymovie prop changes
-
+  
+  //Handles the delete request when button is clicked
   const handleDelete = (e) => 
   {
     e.preventDefault();
 
     axios.delete('http://localhost:4000/api/movies/' + props.myMovie._id)
+    .then()
+    .catch();
   }
 
   return (
@@ -28,7 +31,7 @@ const MovieItem = (props)=> {
           </blockquote>
         </Card.Body>
         <Link to={"/edit/" + props.myMovie._id} className="btn btn-primary">Edit</Link>
-        <Button className = "btn btn-danger" onClick = {handleDelete}>Delete</Button>
+        <Button className = "btn btn-danger" onClick = {handleDelete}>Delete</Button> {/*Delete item using delete handler function when button clicked*/}
       </Card>
     </div>
   );
