@@ -52,7 +52,7 @@ app.post('/api/movies', async (req, res)=>{
     const { title, year, poster } = req.body;
    
     const newMovie = new movieModel({ title, year, poster });
-    await newMovie.save();
+    await newMovie.save(); //wait until last process is finished
    
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
@@ -60,7 +60,7 @@ app.post('/api/movies', async (req, res)=>{
 //Search for a particular movie ID
 app.get('/api/movies/:id', async(req, res) =>
 {
-    const movie = await movieModel.findById(req.params.id);
+    const movie = await movieModel.findById(req.params.id); // Searches for id given by user
     res.json(movie);
 })
 

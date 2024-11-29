@@ -1,5 +1,4 @@
 import Movies from './Movies';
-import Card from 'react-bootstrap/Card'
 import { useEffect, useState } from "react";
 import axios from "axios";
 
