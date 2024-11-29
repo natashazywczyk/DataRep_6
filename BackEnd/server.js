@@ -77,7 +77,7 @@ app.delete('/api/movies/:id', async (req, res) =>
 {
     console.log('Deleting movie, ID: ', req.params.id);
     const movie = await movieModel.findByIdAndDelete(req.params.id); //wait until the id of movie is ofund
-    res.status(200).send({ message: "Movie successfully deleted", movie});
+    res.status(200).send({ message: "Movie successfully deleted", movie}); //tell user if deletion was successful
 });
 
 //Only run on specified port when running

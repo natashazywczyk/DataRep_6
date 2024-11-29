@@ -7,8 +7,8 @@ import Button from 'react-bootstrap/Button';
 
 const MovieItem = (props)=> {
   useEffect(() => {
-    console.log("Movie Item:", props.mymovie);
-  }, [props.mymovie]); // Only run this effect when the mymovie prop changes
+    console.log("Movie Item:", props.myMovie);
+  }, [props.myMovie]); // Only run this effect when the mymovie prop changes
   
   //Handles the delete request when button is clicked
   const handleDelete = (e) => 
